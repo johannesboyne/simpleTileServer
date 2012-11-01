@@ -1,0 +1,24 @@
+<html>
+<head>
+	<title>tiles test</title>
+	<script src='static/js/libs/wax/ext/modestmaps.min.js'></script>
+	<script src='static/js/libs/wax/dist/wax.mm.js'></script>
+	<link href='static/js/libs/wax/theme/controls.css' rel='stylesheet' type='text/css' />
+</head>
+<body>
+	<div id="modestmaps-setup"></div>
+	<script type="text/javascript">
+	var url = 'http://localhost:8888/tileJSON/atari.jsonp';
+	wax.tilejson(url, function(tilejson) {
+		window.m = new MM.Map('modestmaps-setup',
+			new wax.mm.connector(tilejson),
+			new MM.Point(512,256));
+
+		wax.mm.zoomer(m, tilejson).appendTo(m.parent);
+
+		window.m.setCenterZoom({ lat: 0, lon: 0 }, 0);
+		window.m.setZoomRange(0, 3);
+	});
+	</script>
+</body>
+</html>
